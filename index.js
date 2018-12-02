@@ -41,7 +41,8 @@ module.exports = function FpsUtils2(mod) {
         let skillIds = []
         data.push(
             { text: `<font color="#4dd0e1" size="+18">Select the skills that you wish to hide</font><br>` },
-            { text: `Click here to return to the main menu<br><font size="+17">`, command: `fps gui` }
+            { text: `Click here to return<br><font size="+17">`, command: `fps gui skills` },
+            { text: `<font color="${mod.settings.classes[classId(value)].blockingSkills ? green : red}">[[ALL SKILLS]]</font>`, command: `fps skills class ${value};fps gui class ${value}` }
         )
         for (let key in skills[value]) {
             keys.push(key);
@@ -161,7 +162,7 @@ module.exports = function FpsUtils2(mod) {
                 gui.parse([
                     { text: `<font color="#4dd0e1" size="+22">Hide skills by class:<br><br>` },
                     { text: `Click here to return to the main menu<br>`, command: `fps gui` },
-                    { text: `<font color="${mod.settings.blacklistSkills ? green : red}">[toggle skill blacklisting]</font><br>`, command: `fps skill black` },
+                    { text: `<font color="${mod.settings.blacklistSkills ? green : red}">[toggle skill blacklisting]</font><br>`, command: `fps skill black;fps gui skills` },
                     { text: `Hide Specific Skills (Click a class name to open up a list of its skills):<font size="+17"><br>` },
                     { text: `Warrior<br>`, command: `fps gui class warrior` },
                     { text: `Lancer<br>`, command: `fps gui class lancer` },
@@ -652,7 +653,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_USER_EXTERNAL_CHANGE', 6, { order: 9999 }, (event) => {
-        if (mod.settings.showStyle && !event.gameId.equals(myId)) {
+        if (mod.settings.showStyle && event.gameId !== (myId)) {
             event.weaponEnchant = 0;
             event.body = 0;
             event.hand = 0;
@@ -726,7 +727,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_EACH_SKILL_RESULT', 12, { order: 200 }, (event) => {
-        if (event.source.equals(myId) || event.owner.equals(myId)) {
+        if (event.source == (myId) || event.owner == (myId)) {
             if (mod.settings.hitMe) {
                 event.skill.id = '';
                 return true;
@@ -736,7 +737,7 @@ module.exports = function FpsUtils2(mod) {
                 return true;
             }
         }
-        if (mod.settings.hitOther && (spawnedPlayers[event.owner] || spawnedPlayers[event.source]) && !event.target.equals(myId)) {
+        if (mod.settings.hitOther && (spawnedPlayers[event.owner] || spawnedPlayers[event.source]) && event.target !== (myId)) {
             event.skill.id = '';
             return true;
         }
@@ -754,14 +755,14 @@ module.exports = function FpsUtils2(mod) {
 
 
 
-    mod.hook('S_ACTION_STAGE', mod.base.majorPatchVersion >= 75 ? 8 : 7, { order: 999 }, (event) => {
-        if (!event.gameId.equals(myId) && spawnedPlayers[event.gameId]) {
-            if (!event.target.equals(myId) && (mod.settings.mode === 2 || hiddenUsers[event.gameId])) {
+    mod.hook('S_ACTION_STAGE', 8, { order: 999 }, (event) => {
+        if (event.gameId !== (myId) && spawnedPlayers[event.gameId]) {
+            if (event.target !== (myId) && (mod.settings.mode === 2 || hiddenUsers[event.gameId])) {
                 updateLoc(event);
                 return false;
             }
             if (mod.settings.blacklistSkills) {
-                if (typeof mod.settings.classes[getClass(event.templateId)].blockedSkills !== "undefined" && mod.settings.classes[getClass(event.templateId)].blockedSkills.includes(Math.floor((event.skill.id / 10000)))) {
+                if (typeof mod.settings.classes[getClass(event.templateId)].blockedSkills !== "undefined" && mod.settings.classes[getClass(event.templateId)].blockedSkills.includes(event.skill.id / 10000).toString()) {
                     updateLoc(event);
                     return false;
                 }
@@ -774,7 +775,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_START_USER_PROJECTILE', mod.base.majorPatchVersion >= 75 ? 9 : 8, { order: 999 }, (event) => { // end my life
-        if (!event.gameId.equals(myId) && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
+        if (event.gameId !== (myId) && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
             return false;
         }
         if (mod.settings.blacklistProjectiles && mod.settings.hiddenProjectiles.includes(event.skill.id)) {
@@ -783,7 +784,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_SPAWN_PROJECTILE', 5, { order: 999 }, (event) => {
-        if (!event.gameId.equals(myId) && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
+        if (event.gameId !== (myId) && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
             return false;
         }
         if (mod.settings.blacklistProjectiles && mod.settings.hiddenProjectiles.includes(event.skill.id)) {
@@ -792,12 +793,12 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_FEARMOVE_STAGE', 1, (event) => { // we block these to prevent game crashes
-        if ((!event.target.equals(myId) && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
+        if ((event.target !== (myId) && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
             return false;
         }
     });
     mod.hook('S_FEARMOVE_END', 1, (event) => {
-        if ((!event.target.equals(myId) && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
+        if ((event.target !== (myId) && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
             return false;
         }
     });
@@ -815,7 +816,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_UNICAST_TRANSFORM_DATA', 3, { order: 99999 }, (event) => { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        if (mod.settings.showStyle && !event.gameId.equals(myId)) { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+        if (mod.settings.showStyle && event.gameId !== (myId)) { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
             return false;//Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         }//Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
     });//Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
@@ -837,7 +838,7 @@ module.exports = function FpsUtils2(mod) {
         if (mod.settings.blacklistAbnormies && mod.settings.hiddenAbnormies.includes(event.id)) {
             return false;
         }
-        if (mod.settings.hideAllAbnormies && !event.target.equals(myId) && (spawnedPlayers[event.target] && spawnedPlayers[event.source])) {
+        if (mod.settings.hideAllAbnormies && event.target !== (myId) && (spawnedPlayers[event.target] && spawnedPlayers[event.source])) {
             return false;
         }
     });

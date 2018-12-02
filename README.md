@@ -51,8 +51,8 @@ Command | Argument(s) | Example | Description
 *  To get projectile skill IDs you will have to log them yourself, I will add something that does this for you in a later update
   
 ## Update Log
-* Rewrote the entire mod, again.
-* 
+* Moved to BigInt
+* Fixed some other stuff idklol
 ## Work In Progress:
 Various GUI improvements, fix for mount stuff, projectile and effect lists, fix formatting.
 
