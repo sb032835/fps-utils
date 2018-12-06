@@ -653,7 +653,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_USER_EXTERNAL_CHANGE', 6, { order: 9999 }, (event) => {
-        if (mod.settings.showStyle && event.gameId !== (myId)) {
+        if (mod.settings.showStyle && event.gameId !== myId) {
             event.weaponEnchant = 0;
             event.body = 0;
             event.hand = 0;
@@ -703,7 +703,7 @@ module.exports = function FpsUtils2(mod) {
         })
     })
 
-    mod.hook('S_SPAWN_NPC', 9, (event) => {
+    mod.hook('S_SPAWN_NPC', 10, (event) => {
         if (mod.settings.hideAllSummons && event.huntingZoneId === 1023) {
             if (mod.settings.keepMySummons && mod.game.me.is(event.owner)) return true;
             hiddenNpcs[event.gameId] = event; // apparently NPCs get feared and crash the client too
@@ -727,7 +727,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_EACH_SKILL_RESULT', 12, { order: 200 }, (event) => {
-        if (event.source == (myId) || event.owner == (myId)) {
+        if (event.source == myId || event.owner == myId) {
             if (mod.settings.hitMe) {
                 event.skill.id = '';
                 return true;
@@ -737,7 +737,7 @@ module.exports = function FpsUtils2(mod) {
                 return true;
             }
         }
-        if (mod.settings.hitOther && (spawnedPlayers[event.owner] || spawnedPlayers[event.source]) && event.target !== (myId)) {
+        if (mod.settings.hitOther && (spawnedPlayers[event.owner] || spawnedPlayers[event.source]) && event.target !== myId) {
             event.skill.id = '';
             return true;
         }
@@ -756,8 +756,8 @@ module.exports = function FpsUtils2(mod) {
 
 
     mod.hook('S_ACTION_STAGE', 8, { order: 999 }, (event) => {
-        if (event.gameId !== (myId) && spawnedPlayers[event.gameId]) {
-            if (event.target !== (myId) && (mod.settings.mode === 2 || hiddenUsers[event.gameId])) {
+        if (event.gameId !== myId && spawnedPlayers[event.gameId]) {
+            if (event.target !== myId && (mod.settings.mode === 2 || hiddenUsers[event.gameId])) {
                 updateLoc(event);
                 return false;
             }
@@ -775,7 +775,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_START_USER_PROJECTILE', mod.base.majorPatchVersion >= 75 ? 9 : 8, { order: 999 }, (event) => { // end my life
-        if (event.gameId !== (myId) && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
+        if (event.gameId !== myId && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
             return false;
         }
         if (mod.settings.blacklistProjectiles && mod.settings.hiddenProjectiles.includes(event.skill.id)) {
@@ -784,7 +784,7 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_SPAWN_PROJECTILE', 5, { order: 999 }, (event) => {
-        if (event.gameId !== (myId) && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
+        if (event.gameId !== myId && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
             return false;
         }
         if (mod.settings.blacklistProjectiles && mod.settings.hiddenProjectiles.includes(event.skill.id)) {
@@ -793,12 +793,12 @@ module.exports = function FpsUtils2(mod) {
     });
 
     mod.hook('S_FEARMOVE_STAGE', 1, (event) => { // we block these to prevent game crashes
-        if ((event.target !== (myId) && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
+        if ((event.target !== myId && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
             return false;
         }
     });
     mod.hook('S_FEARMOVE_END', 1, (event) => {
-        if ((event.target !== (myId) && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
+        if ((event.target !== myId && mod.settings.mode === 3) || hiddenUsers[event.target] || hiddenNpcs[event.target]) {
             return false;
         }
     });
@@ -815,8 +815,8 @@ module.exports = function FpsUtils2(mod) {
         }
     });
 
-    mod.hook('S_UNICAST_TRANSFORM_DATA', 3, { order: 99999 }, (event) => { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        if (mod.settings.showStyle && event.gameId !== (myId)) { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+    mod.hook('S_UNICAST_TRANSFORM_DATA', 4, { order: 99999 }, (event) => { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+        if (mod.settings.showStyle && event.gameId !== myId) { //Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
             return false;//Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         }//Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
     });//Thanks Trance!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
@@ -838,7 +838,7 @@ module.exports = function FpsUtils2(mod) {
         if (mod.settings.blacklistAbnormies && mod.settings.hiddenAbnormies.includes(event.id)) {
             return false;
         }
-        if (mod.settings.hideAllAbnormies && event.target !== (myId) && (spawnedPlayers[event.target] && spawnedPlayers[event.source])) {
+        if (mod.settings.hideAllAbnormies && event.target !== myId && (spawnedPlayers[event.target] && spawnedPlayers[event.source])) {
             return false;
         }
     });
