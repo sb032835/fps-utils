@@ -2,10 +2,10 @@
 let BadGui
 
 try {
-    BadGui = require('badGui')
+    BadGui = require('../badGui')
 } catch (e) {
     try {
-        BadGui = require('badGui-master')
+        BadGui = require('../badGui-master')
     } catch (e) {
         console.log(`[FPS-UTILS] - badGUI not installed, GUI functionality disabled, please see the readme for more information`)
     }
@@ -774,7 +774,7 @@ module.exports = function FpsUtils2(mod) {
         }
     });
 
-    mod.hook('S_START_USER_PROJECTILE', mod.base.majorPatchVersion >= 75 ? 9 : 8, { order: 999 }, (event) => { // end my life
+    mod.hook('S_START_USER_PROJECTILE', 9, { order: 999 }, (event) => { // end my life
         if (event.gameId !== myId && spawnedPlayers[event.gameId] && (hiddenUsers[event.gameId] || mod.settings.mode > 0 || mod.settings.hideProjectiles)) {
             return false;
         }
