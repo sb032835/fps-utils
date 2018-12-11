@@ -225,28 +225,28 @@ module.exports = function FpsUtils2(mod) {
                 gui.parse([
                     { text: `{1}<font color="#fcf9ea" size="+15">[&#x7AF6;&#x6280;&#x5834;&#x7BB1;-&#x9ED1;&#x5564;&#x9152;] </font>{/1}`, command: `rootbeer`},//rootbeer
 					{ text: `{2}<font color="#fcf9ea" size="+15">[&#x6B50;&#x812B;&#x5361;&#x65AF;&#x7279;] </font>{/2}`, command: `autocast` },//letmelock	
-					{ text: `{3}<font color="#fcf9ea" size="+15">[LetMeFxck] </font>{/3}`, command: `letmepot` },//letmepot
+					{ text: `{3}<font color="#fcf9ea" size="+15">[LetMeFxck] </font>{/3}`, command: `slay` },//letmepot
 					{ text: `{4}<font color="#fcf9ea" size="+15">[&#x7BB1;&#x5B50;] </font>{/4}`, command: `box` },//box ??					
-					{ text: `{5}<font color="#fcf9ea" size="+15">[Zerk 75] </font>{/5}<br>`, command: `75water` },//75water
-					{ text: `{6}<font color="#fcf9ea" size="+15">[&#x50BB;&#x903C; on] </font>{/6}`, command: `sp on` },//sp on ??
-					{ text: `<font color="#dc55c0" size="+15">[&#x50BB;&#x903C; off] </font>`, command: `sp off` },//sp off ??					
+					{ text: `{5}<font color="#fcf9ea" size="+15">[&#x6B50;&#x62C9;&#x62C9;] </font>{/5}<br>`, command: `oll` },//75water
+					{ text: `{6}<font color="#fcf9ea" size="+15">[null] </font>{/6}`, command: `sp on` },//sp on ??
+					{ text: `<font color="#dc55c0" size="+15">[null] </font>`, command: `sp off` },//sp off ??					
 					{ text: `{7}<font color="#dc55c0" size="+15">[IFF&#x7CFB;&#x7D71;] </font>{/7}`, command: `partymarkers` },//partymarkers ?????
 					{ text: `{8}<font color="#fcf9ea" size="+15">[&#x5DF4;&#x6EF4;&#x5E03;&#x7F85;&#x514B;] </font>{/8}`, command: `bb` },//bb ?????
 					{ text: `{9}<font color="#fcf9ea" size="+15">[&#x5FEB;&#x901F;&#x52A0;&#x8F09;] </font>{/9}`, command: `ql` },//ql ????
-					{ text: `{10}<font color="#fcf9ea" size="+15">[&#x5929;&#x84EE;&#x82B1;] </font>{/10}<br>`, command: `Lotus` },//Lotus ???
-					{ text: `{11}<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;500] </font>{/11}`, command: `camera 550` },//camera XXX ??
-					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;700] </font>`, command: `camera 700` },//camera XXX ??
-					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;800] </font>`, command: `camera 800` },//camera XXX ??
-					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;900] </font>`, command: `camera 900` },//camera XXX ??
-					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;1100] </font><br>`, command: `camera 1100` },//camera XXX ??
-					{ text: `{12}<font color="#fcf9ea" size="+15">[hp&#xFF1A;1] </font>{/12}`, command: `hp 1` },//hp XXX ???
-					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;10] </font>`, command: `hp 10` },//hp XXX ???
-					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;20] </font>`, command: `hp 20` },//camera XXX	???	 			
-					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;30] </font>`, command: `hp 30` },//camera XXX ???
-					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;40] </font><br>`, command: `hp 40` },//camera XXX ???
-					{ text: `{13}<font color="#fcf9ea" size="+15">[&#x5206;&#x914D;&#xFF1A;&#x64F2;&#x9AB0;] </font>{/13}`, command: `loots roll` },//partymarkers ?????
-					{ text: `<font color="#fcf9ea" size="+15">[&#x5206;&#x914D;&#xFF1A;&#x96A8;&#x6A5F;] </font>`, command: `loots random` },//partymarkers ?????
-					{ text: `<font color="#fcf9ea" size="+15">[&#x5206;&#x914D;&#xFF1A;&#x81EA;&#x7531;&#x64BF;&#x53D6;] </font><br>`, command: `loots ffa` },//partymarkers ???????					
+					{ text: `{10}<font color="#fcf9ea" size="+15">[null] </font>{/10}<br>`, command: `Lotus` },//Lotus ???
+					{ text: `{11}<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;500] </font>{/11}`, command: `camera 550` },
+					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;700] </font>`, command: `camera 700` },
+					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;800] </font>`, command: `camera 800` },
+					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;900] </font>`, command: `camera 900` },
+					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;1100] </font><br>`, command: `camera 1100` },
+					{ text: `{12}<font color="#fcf9ea" size="+15">[hp&#xFF1A;1] </font>{/12}`, command: `hp 1` },
+					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;10] </font>`, command: `hp 10` },
+					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;20] </font>`, command: `hp 20` }, 			
+					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;30] </font>`, command: `hp 30` },
+					{ text: `<font color="#fcf9ea" size="+15">[hp&#xFF1A;40] </font><br>`, command: `hp 40` },
+					{ text: `{13}<font color="#fcf9ea" size="+15">[null] </font>{/13}`, command: `loots roll` },
+					{ text: `<font color="#fcf9ea" size="+15">[null] </font>`, command: `loots random` },
+					{ text: `<font color="#fcf9ea" size="+15">[null] </font><br>`, command: `loots ffa` },					
 					{ text: `<font color="#4dd0e1" size="+18">FPS-&#x6A21;&#x5F0F;:<br>` },//FPS-??:
                     { text: `{A}<font color="${mod.settings.mode === 0 ? green : red}"> [0- &#x7981;&#x7528;&#x6240;&#x6709;&#x6A21;&#x5F0F;] </font>{/A}`, command: `fps mode 0;fps gui` },
                     { text: `{A}<font color="${mod.settings.mode === 1 ? green : red}"> [1- &#x96B1;&#x85CF;&#x6240;&#x6709;&#x6295;&#x5C04;&#x6280;&#x80FD;&#x8207;&#x5176;&#x4ED6;&#x73A9;&#x5BB6;&#x7684;&#x547D;&#x4E2D;&#x6548;&#x679C;] </font>{/A}`, command: `fps mode 1;fps gui` },
