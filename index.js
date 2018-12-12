@@ -233,7 +233,7 @@ module.exports = function FpsUtils2(mod) {
 					{ text: `{7}<font color="#dc55c0" size="+15">[IFF&#x7CFB;&#x7D71;] </font>{/7}`, command: `partymarkers` },//partymarkers ?????
 					{ text: `{8}<font color="#fcf9ea" size="+15">[&#x5DF4;&#x6EF4;&#x5E03;&#x7F85;&#x514B;] </font>{/8}`, command: `bb` },//bb ?????
 					{ text: `{9}<font color="#fcf9ea" size="+15">[&#x5FEB;&#x901F;&#x52A0;&#x8F09;] </font>{/9}`, command: `ql` },//ql ????
-					{ text: `{10}<font color="#fcf9ea" size="+15">[null] </font>{/10}<br>`, command: `Lotus` },//Lotus ???
+					{ text: `{10}<font color="#fcf9ea" size="+15">[&#x4F60;&#x4ED6;&#x5ABD;&#x5FEB;] </font>{/10}<br>`, command: `fly` },//Lotus ???
 					{ text: `{11}<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;500] </font>{/11}`, command: `camera 550` },
 					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;700] </font>`, command: `camera 700` },
 					{ text: `<font color="#fcf9ea" size="+15">[&#x8996;&#x8DDD;&#xFF1A;800] </font>`, command: `camera 800` },
