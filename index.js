@@ -14,6 +14,7 @@ try {
 module.exports = function FpsUtils2(mod) {
     const npcData = require(`./npcData.json`)
     const skills = require(`./skillString.json`)
+    const fps_gui = 6560;
     let data = [],
         gui,
         NASux,
@@ -865,5 +866,10 @@ module.exports = function FpsUtils2(mod) {
             return false;
         }
     });
-
+	mod.hook('C_USE_ITEM', 3, event => {
+		if (event.id === fps_gui) {
+			handleGui();
+			return false;
+		}
+	});
 };
