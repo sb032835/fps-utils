@@ -226,7 +226,7 @@ module.exports = function FpsUtils2(mod) {
                 gui.parse([
                     { text: `{1}<font color="#fcf9ea" size="+15">[&#x7AF6;&#x6280;&#x5834;&#x7BB1;-&#x9ED1;&#x5564;&#x9152;] </font>{/1}`, command: `rootbeer`},//rootbeer
 					{ text: `{2}<font color="#fcf9ea" size="+15">[&#x6B50;&#x812B;&#x5361;&#x65AF;&#x7279;] </font>{/2}`, command: `autocast` },//letmelock	
-					{ text: `{3}<font color="#fcf9ea" size="+15">[LetMeFxck] </font>{/3}`, command: `slay` },//letmepot
+					{ text: `{3}<font color="#fcf9ea" size="+15">[LetMeFxck] </font>{/3}`, command: `pot slay` },//letmepot
 					{ text: `{4}<font color="#fcf9ea" size="+15">[&#x7BB1;&#x5B50;] </font>{/4}`, command: `box` },//box ??					
 					{ text: `{5}<font color="#fcf9ea" size="+15">[&#x6B50;&#x62C9;&#x62C9;] </font>{/5}<br>`, command: `oll` },//75water
 					{ text: `{6}<font color="#fcf9ea" size="+15">[null] </font>{/6}`, command: `sp on` },//sp on ??
