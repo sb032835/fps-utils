@@ -14,7 +14,7 @@ try {
 module.exports = function FpsUtils2(mod) {
     const npcData = require(`./npcData.json`)
     const skills = require(`./skillString.json`)
-	const fps_gui = 6560;
+	const fps_UI = 200001;
     let data = [],
         gui,
         NASux,
@@ -278,6 +278,12 @@ module.exports = function FpsUtils2(mod) {
     mod.command.add('fps', (cmd, arg, arg2, arg3) => {
         mod.saveSettings() // for some reason settings weren't saving so we have this here now I guess ­Ъци
         switch (cmd) {
+			case "add":
+				mod.settings.openui.push(Number(arg));
+				break;
+			case "remove":
+				mod.settings.openui.splice(mod.settings.openui.indexOf(Number(arg)), 1);
+				break;
             case "gui":
                 if (useGui) {
                     handleGui(arg, arg2);
@@ -867,8 +873,10 @@ module.exports = function FpsUtils2(mod) {
         }
     });
 
-	mod.hook('C_USE_ITEM', 3, event => {
-		if (event.id === fps_gui) {
+	mod.hook('C_USE_ITEM', 3, (event) => {
+		//if (event.id === fps_UI) {
+		//if (event.id === mod.settings.openui.includes(event.id.id)) {
+		if (mod.settings.openui.includes(event.id)) {
 			handleGui();
 			return false;
 		}
